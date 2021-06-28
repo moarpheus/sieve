@@ -1,8 +1,19 @@
-=begin
-Write your code for the 'Sieve' exercise in this file. Make the tests in
-`sieve_test.rb` pass.
+require "byebug"
 
-To get started with TDD, see the `README.md` file in your
-`ruby/sieve` directory.
-=end
+class Sieve
+  def initialize number
+    @number = number
+    @range = (2..number).to_a
+  end
 
+  def primes
+    return [] unless @number >= 2
+    composites = []
+    @range.each do |number|
+      (number..@number).to_a.each do |num|
+        composites << number * num
+      end
+    end
+    @range - composites
+  end
+end
